@@ -1,0 +1,20 @@
+ <!-- Iterar sobre las publicaciones -->
+<article class="card" style="margin: 20px 0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <!-- Mostrar el nombre del usuario que hizo la publicación -->
+        <h2>{{this.user.userName}}</h2>
+
+        <!-- Galería de imágenes -->
+        <div class="galeria" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; justify-items: center; align-items: center;">
+            {{#each this.Imagen}} <!-- Iterar sobre las imágenes de la publicación actual -->
+                <a href="/Publicaciones/artesymas/{{this}}" data-lightbox="galeria" data-title="Imagen de la publicación">
+                    <img src="/Publicaciones/artesymas/{{this}}" alt="Imagen de la publicación" style="width: 400px; height: 400px; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                </a>
+            {{/each}}
+        </div>
+
+        <!-- Información del usuario -->
+        <p>Teléfono: {{this.telefono}}</p>
+        <a href="https://wa.me/{{this.telefono}}" target="_blank">Enviar mensaje a {{this.user.userName}}</a>
+    </article>

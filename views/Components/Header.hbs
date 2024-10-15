@@ -1,0 +1,83 @@
+<header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-house-door-fill"></i> Navbar
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/principal" style="transition: background-color 0.3s;">
+            Home
+          </a>
+          <a class="nav-item nav-link" href="/foros" style="transition: background-color 0.3s;">
+            Foros
+          </a>
+          <a class="nav-item nav-link" href="/auth/logout" style="transition: background-color 0.3s;">
+            Cerrar Sesión
+          </a>
+          <div class="dropdown">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Agricultores
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/agregarCultivo">Mis cultivos</a>
+              <a class="dropdown-item" href="/cosecha">Cosecha</a>
+            </div>
+          </div>
+          <a class="nav-item nav-link" href="/Acciones" style="transition: background-color 0.3s;">
+            Actividades
+          </a>
+           <a class="nav-item nav-link" href="/tablaCosecha" style="transition: background-color 0.3s;">
+            Cosechado
+          </a>
+           <a class="nav-item nav-link" href="/tablaCultivo" style="transition: background-color 0.3s;">
+            Plantado
+          </a>
+        </div>
+        <div class="ml-auto navbar-nav">
+          <!-- Mostrar el nombre y correo del usuario autenticado -->
+          <a class="nav-item nav-link text-light">Usuario: {{user.userName}}</a>
+          <a class="nav-item nav-link text-light">Correo: {{user.email}}</a>
+          <a  class="nav-item nav-link text-light">{{user.telefono}}</a>
+          </div>
+      </div>
+    </div>
+  </nav>
+ <header>
+    <!-- Aquí podrías incluir otros elementos del encabezado -->
+    
+    {{#if messages.length}}
+        <div class="alert alert-danger" id="errorPopup" style="display: block;">
+            {{#each messages}}
+                <p>{{this}}</p>
+            {{/each}}
+            <script>
+                // Mostrar el popup de error y ocultarlo después de 3 segundos
+                setTimeout(() => {
+                    document.getElementById('errorPopup').style.display = 'none';
+                }, 3000);
+            </script>
+        </div>
+    {{/if}}
+
+    {{#if success.length}}
+        <div class="alert alert-success" id="successPopup" style="display: block;">
+            {{#each success}}
+                <p>{{this}}</p>
+            {{/each}}
+            <script>
+                // Mostrar el popup de éxito y ocultarlo después de 3 segundos
+                setTimeout(() => {
+                    document.getElementById('successPopup').style.display = 'none';
+                }, 3000);
+            </script>
+        </div>
+    {{/if}}
+</header>
+
