@@ -7,6 +7,8 @@ const User = require('./Models/User');
 require('dotenv').config();
 require('./db/sqlMongoose');
 
+
+
 const app = express();
 
 // Configuración de la sesión
@@ -51,7 +53,7 @@ app.set('Views', './Views');
 // Middleware para leer datos del formulario
 app.use(express.urlencoded({ extended: false }));
 
-
+app.use(express.static('public'));
 
 // Middleware para manejar JSON
 app.use(express.json());

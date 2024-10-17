@@ -1,5 +1,11 @@
 const { getConnection } = require('../db/sqlMongoose');
 const sql=require('mssql')
+const Handlebars = require('handlebars');
+
+Handlebars.registerHelper('add', function (a, b) {
+    return a + b;
+});
+
 const publicAgricultores = async (req, res) => {
     const { actividad1, actividad2, actividad3, actividad4 } = req.body;
 

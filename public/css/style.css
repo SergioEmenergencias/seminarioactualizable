@@ -61,3 +61,16 @@ button.btn-success:hover {
     display: block;
 }
 
+footer a:hover {
+    color: #ddd; /* Color de los enlaces al pasar el cursor */
+    text-decoration: none; /* Evitar el subrayado */
+}
+
+footer i {
+    font-size: 1.5rem; /* Ajustar el tamaño de los iconos de redes sociales */
+}
+
+footer .list-unstyled li {
+    margin-bottom: 10px;
+}
+
