@@ -65,8 +65,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Rutas principales
-app.use('/', require('./Routes/homeRoutes'));
 app.use('/auth', require('./Routes/authRoutes'));
+app.use('/', require('./Routes/homeRoutes'));
+
 
 // Archivos estáticos
 app.use(express.static(__dirname + '/public'));
