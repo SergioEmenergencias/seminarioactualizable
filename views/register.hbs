@@ -1,17 +1,16 @@
-
 <div class="container-fluid vh-100 d-flex justify-content-center align-items-center" style="background-color: #e8f5e9;">
-    <div class="row bg-white rounded shadow-lg" style="max-width: 900px; width: 100%;">
+    <div class="row bg-white rounded shadow-lg" style="max-width: 900px; width: 100%; margin-top: 20px; margin-bottom: 20px;">
         <!-- Imagen del lado izquierdo -->
-        <div class="col-md-6 d-none d-md-block p-0">
-            <img src="/imgs/Agricultura.png" alt="Register Image" class="img-fluid h-100 rounded-start" style="object-fit: cover; height: 100%;">
+        <div class="col-md-6 p-0 ">
+            <img src="/imgs/cultivo_tomate6.jpg" alt="Register Image" class="img-fluid h-100 rounded-start" style="object-fit: cover;">
         </div>
         <!-- Formulario de registro del lado derecho -->
-        <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
-            <h3 class="mb-4 text-center" style="color: #2e7d32;">Regístrate</h3>
+        <div class="col-md-6 d-flex flex-column justify-content-center p-5">
+            <h3 class="mb-4 text-center" style="color: #2e7d32;">Bienvenido de nuevo</h3>
             <p class="text-center mb-4">Crea tu cuenta o <a href="/auth/">Inicia sesión</a></p>
             <form action="/auth/register" method="POST">
                 <div class="form-group mb-3">
-                    <label for="username" class="form-label"><i class="fas fa-user"></i> Nombre de usuario</label>
+                    <label for="username" class="form-label"><i class="fas fa-user"></i> Usuario</label>
                     <input type="text" class="form-control" id="userName" name="userName" placeholder="Ingresa tu nombre de usuario" required>
                 </div>
                 <div class="form-group mb-3">
@@ -19,7 +18,7 @@
                     <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="tel" class="form-label"><i class="fas fa-envelope"></i> Numero de telefono</label>
+                    <label for="tel" class="form-label"><i class="fas fa-phone"></i> Numero de telefono</label>
                     <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingresa tu numero de telefono" required>
                 </div>
                 <div class="form-group mb-3">
