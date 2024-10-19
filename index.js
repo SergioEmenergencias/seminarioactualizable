@@ -49,6 +49,13 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', './Views');
 
+
+
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+app.set('Views', './Views');
+
+
 // Middleware para leer datos del formulario
 app.use(express.urlencoded({ extended: false }));
 

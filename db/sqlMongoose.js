@@ -5,10 +5,10 @@ require('dotenv').config(); // Cargar variables de entorno
 
 // Configuración de SQL Server usando variables de entorno
 const sqlConfig = {
-    user: process.env.SQL_USER || "SeminarioMaster_SQLLogin_2",
-    password: process.env.SQL_PASSWORD || "varkmfk659",
-    database: process.env.SQL_DATABASE || "actividadesagricultores",
-    server: process.env.SQL_SERVER || "actividadesagricultores.mssql.somee.com",
+    user: process.env.SQL_USER ,
+    password: process.env.SQL_PASSWORD ,
+    database: process.env.SQL_DATABASE ,
+    server: process.env.SQL_SERVER ,
     options: {
         encrypt: true, // Si usas SSL
         trustServerCertificate: true, // Permitir certificados no válidos

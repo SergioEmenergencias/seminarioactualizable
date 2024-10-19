@@ -233,7 +233,11 @@ const crearFertilizacion = async (req, res) => {
         .query('SELECT cultivo_trabajado FROM [dbo].[Terrenos] WHERE id = @idCultivo');
         const nombreCultivo = cultivoResult.recordset[0].cultivo_trabajado;
         const result = await pool.request()
+
             .input('fecha', Date.now)
+
+            .input('fecha', fecha)
+
             .input('tipoFertilizacion', tipoFertilizacion)
             .input('idCultivo', id_cultivo)
             .input('nombreCultivo', nombreCultivo)
@@ -295,7 +299,11 @@ const prepararTerreno = async (req, res) => {
         const pool = await getConnection();
 
         const result = await pool.request()
+
             .input('fecha', Date.now())
+
+            .input('fecha', fecha)
+
             .input('actividad', actividad)
             .input('cultivo_trabajado', cultivo_trabajado)
             .input('extension_trabajada', extension_trabajada)
