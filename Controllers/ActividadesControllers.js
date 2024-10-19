@@ -168,11 +168,92 @@ async function obtenerPlantaciones(req, res) {
     }
 }
 
+async function obtenerTodasTablas(req, res) {
+    try {
+        const pool = await getConnection(); // Obtener la conexión de SQL Server
+        const userId = req.user.id; // Asumimos que el ID del usuario está en req.user
+
+        if (!userId) {
+            return res.status(400).json({ message: "Falta el ID del usuario" });
+        }
+
+        // Obtener Terrenos
+        const resultTerrenos = await pool.request()
+            .input('usuarioId', sql.VarChar(60), userId)
+            .query(`SELECT * FROM Terrenos WHERE id_usuario = @usuarioId`);
+        
+        const columnNamesTerrenos = Object.keys(resultTerrenos.recordset[0] || {});
+        const rowsTerrenos = resultTerrenos.recordset;
+
+        // Obtener Producción
+        const resultProduccion = await pool.request()
+            .input('usuarioId', sql.VarChar(60), userId)
+            .query(`SELECT * FROM Produccion WHERE id_usuario = @usuarioId`);
+        
+        const columnNamesProduccion = Object.keys(resultProduccion.recordset[0] || {});
+        const rowsProduccion = resultProduccion.recordset;
+
+        // Obtener Fertilización
+        const resultFertilizacion = await pool.request()
+        .input('usuarioId', sql.VarChar(60), userId)
+        .query(`SELECT * FROM Fertilizacion WHERE id_usuario = @usuarioId`);
+    
+        const columnNamesFertilizacion = Object.keys(resultFertilizacion.recordset[0] || {});
+        const rowsFertilizacion = resultFertilizacion.recordset;
+
+        //Obtener Siembra
+        const resultSiembra = await pool.request()
+        .input('usuarioId', sql.VarChar(60), userId)
+        .query(`SELECT * FROM Siembra WHERE id_usuario = @usuarioId`);
+    
+        const columnNamesSiembra = Object.keys(resultSiembra.recordset[0] || {});
+        const rowsSiembra = resultSiembra.recordset;
+
+        //Obtener Enfermedades
+        const resultEnfermedades = await pool.request()
+        .input('usuarioId', sql.VarChar(60), userId)
+        .query(`SELECT * FROM Enfermedades WHERE id_usuario = @usuarioId`);
+    
+        const columnNamesEnfermedades = Object.keys(resultEnfermedades.recordset[0] || {});
+        const rowsEnfermedades = resultEnfermedades.recordset;
+
+        // Obtener Ventas
+        const resultVentas = await pool.request()
+        .input('usuarioId', sql.VarChar(60), userId)
+        .query(`SELECT * FROM Ventas WHERE id_usuario = @usuarioId`);
+    
+        const columnNamesVentas = Object.keys(resultVentas.recordset[0] || {});
+        const rowsVentas = resultVentas.recordset;
+
+        // Aquí puedes añadir otras tablas como Fertilización, Siembra, Enfermedades, etc.
+
+        // Renderizamos la vista con los datos de las tablas
+        res.render('Tablas', {
+            columnNamesVentas,
+            rowsVentas,
+            columnNamesProduccion,
+            rowsProduccion,
+            columnNamesFertilizacion,
+            rowsFertilizacion,
+            columnNamesSiembra,
+            rowsSiembra,
+            columnNamesEnfermedades,
+            rowsEnfermedades,
+            columnNamesTerrenos,
+            rowsTerrenos,
+            // Añadir otras tablas aquí
+        });
+    } catch (error) {
+        console.error("Error al obtener las tablas:", error);
+        res.status(500).json({ message: "Error al obtener las tablas", error });
+    }
+}
 
 module.exports = {
     insertarCultivo,
     obtenerPlantaciones,
     insertarCosecha,
     obtenerCosechas,
-    publicAgricultores
+    publicAgricultores,
+    obtenerTodasTablas
 };

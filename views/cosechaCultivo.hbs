@@ -12,8 +12,12 @@
 
             <!-- Campo para el ID del cultivo -->
             <div class="mb-3">
-                <label for="id_cultivo" class="form-label">Nombre Corto</label>
-                <input type="text" class="form-control" id="id_cultivo" name="id_cultivo" placeholder="Ingresa el ID del cultivo" required>
+                <select name="id_cultivo" id="id_cultivo" required>
+            <option value="">Seleccione un cultivo</option>
+            {{#each cultivos}}
+            <option value="{{this.id}}">{{this.cultivo_trabajado}}</option>
+            {{/each}}
+        </select>
             </div>
 
             <!-- Campo para las cajas producidas de primera clase -->

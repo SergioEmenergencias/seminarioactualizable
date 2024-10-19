@@ -1,49 +1,35 @@
- <div class="container my-5">
-        <h2 class="text-center mb-4">Registrar Actividad de Cultivo</h2>
+<form action="/actividades" method="POST">
+    <h2>Agregar Actividad</h2>
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" name="fecha" required>
 
-        <!-- Formulario para registrar actividad de cultivo -->
-        <form action="/cultivos/actividades" method="POST">
+    <label for="actividad">Actividad:</label>
+    <input type="text" id="actividad" name="actividad" required>
 
-            <!-- Campo para la fecha y hora -->
-            <div class="mb-3">
-                <label for="fecha_hora" class="form-label">Fecha y Hora</label>
-                <input type="datetime-local" class="form-control" id="fecha_hora" name="fecha_hora" required>
-            </div>
+    <select name="id_cultivo" id="id_cultivo" required>
+            <option value="">Seleccione un cultivo</option>
+            {{#each cultivos}}
+            <option value="{{this.id}}">{{this.cultivo_trabajado}}</option>
+            {{/each}}
+        </select>
 
-            <!-- Campo para seleccionar el nombre de la actividad desde la base de datos -->
-            <div class="mb-3">
-                <label for="nombre_actividad" class="form-label">Nombre de la Actividad</label>
-                <select class="form-select" id="nombre_actividad" name="nombre_actividad" required>
-                    <option value="">Selecciona una actividad</option>
-                    {{#each actividades}} <!-- Renderizar la lista de actividades desde la base de datos -->
-                    <option value="{{this.nombre_actividad}}">{{this.nombre_actividad}}</option>
-                    {{/each}}
-                </select>
-            </div>
+    <label for="extensionTrabajada">Extensión Trabajada:</label>
+    <input type="number" step="0.01" id="extensionTrabajada" name="extensionTrabajada" required>
 
-            <!-- Campo para el tipo de cultivo -->
-            <div class="mb-3">
-                <label for="tipo_cultivo" class="form-label">Tipo de Cultivo</label>
-                <input type="text" class="form-control" id="tipo_cultivo" name="tipo_cultivo" placeholder="Ingresa el tipo de cultivo" required>
-            </div>
+    <label for="insumosUtilizados">Insumos Utilizados:</label>
+    <input type="text" id="insumosUtilizados" name="insumosUtilizados" required>
 
-            <!-- Campo para el encargado -->
-            <div class="mb-3">
-                <label for="encargado" class="form-label">Encargado</label>
-                <input type="text" class="form-control" id="encargado" name="encargado" placeholder="Nombre del encargado" required>
-            </div>
+    <label for="costoInsumos">Costo de Insumos:</label>
+    <input type="number" step="0.01" id="costoInsumos" name="costoInsumos" required>
 
-            <!-- Campo para los insumos utilizados -->
-            <div class="mb-3">
-                <label for="insumos" class="form-label">Insumos Utilizados</label>
-                <textarea class="form-control" id="insumos" name="insumos" rows="3" placeholder="Lista de insumos utilizados" required></textarea>
-            </div>
+    <label for="jornales">Jornales:</label>
+    <input type="number" id="jornales" name="jornales" required>
 
-            <!-- Botón de envío -->
-            <div class="d-grid">
-                <button type="submit" class="btn btn-success">Registrar Actividad</button>
-            </div>
-        </form>
-    </div>
+    <label for="costoJornal">Costo por Jornal:</label>
+    <input type="number" step="0.01" id="costoJornal" name="costoJornal" required>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <label for="costoTotal">Costo Total:</label>
+    <input type="number" step="0.01" id="costoTotal" name="costoTotal" required>
+
+    <button type="submit">Guardar Actividad</button>
+</form>
