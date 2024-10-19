@@ -39,7 +39,6 @@ passport.deserializeUser(async (user, done) => {
 });
 
 // Configuración de Handlebars
-// Configuración de Handlebars
 const hbs = create({
     extname: 'hbs',
     layoutsDir: 'Views/Layouts', // Esta debe ser una cadena
@@ -48,7 +47,7 @@ const hbs = create({
 });
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-app.set('Views', './Views');
+app.set('views', './Views');
 
 // Middleware para leer datos del formulario
 app.use(express.urlencoded({ extended: false }));
