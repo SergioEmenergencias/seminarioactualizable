@@ -1,0 +1,68 @@
+<h1>Foros</h1>
+
+<!-- Formulario para crear un nuevo post -->
+<form action="/foros" method="POST">
+    <input type="text" name="pregunta" placeholder="Título del Post" required>
+    <textarea name="contexto" placeholder="Contexto o detalles del Post" required></textarea>
+    <!-- No pedimos el nombre del usuario -->
+    <button type="submit">Crear Post</button>
+</form>
+
+<hr>
+
+<!-- Mostrar todos los posts -->
+{{#each foros}}
+    <div class="post">
+        <h3>{{this.pregunta}}</h3>
+        <p><strong>Publicado por:</strong> {{this.usuario}} <strong>en:</strong> {{this.fecha}}</p>
+        <p>{{this.contexto}}</p>
+
+        <!-- Formulario para agregar una respuesta -->
+        <form action="/foros/{{this._id}}/respuestas" method="POST">
+            <textarea name="texto" placeholder="Escribe una respuesta" required></textarea>
+            <!-- No pedimos el nombre del usuario -->
+            <button type="submit">Responder</button>
+        </form>
+
+        <!-- Botón para mostrar/ocultar respuestas -->
+        <button class="toggle-respuestas" data-post-id="{{this._id}}">Mostrar respuestas</button>
+
+        <!-- Contenedor de respuestas (inicialmente oculto) -->
+        <div id="respuestas-{{this._id}}" class="respuestas" style="display: none;">
+            {{#if this.respuestas.length}}
+                <h4>Respuestas:</h4>
+                {{#each this.respuestas}}
+                    <div class="respuesta">
+                        <p>{{this.texto}}</p>
+                        <p><strong>Respondido por:</strong> {{this.usuario}} <strong>el:</strong> {{this.fecha}}</p>
+                    </div>
+                {{/each}}
+            {{else}}
+                <p>No hay respuestas aún.</p>
+            {{/if}}
+        </div>
+    </div>
+    <hr>
+{{/each}}
+
+<!-- Agregar el script para manejar el despliegue de las respuestas -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const botones = document.querySelectorAll('.toggle-respuestas');
+        
+        botones.forEach(boton => {
+            boton.addEventListener('click', () => {
+                const postId = boton.getAttribute('data-post-id');
+                const respuestasDiv = document.getElementById(`respuestas-${postId}`);
+                
+                if (respuestasDiv.style.display === 'none') {
+                    respuestasDiv.style.display = 'block';
+                    boton.textContent = 'Ocultar respuestas';
+                } else {
+                    respuestasDiv.style.display = 'none';
+                    boton.textContent = 'Mostrar respuestas';
+                }
+            });
+        });
+    });
+</script>
